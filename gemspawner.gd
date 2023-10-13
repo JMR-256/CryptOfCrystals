@@ -9,8 +9,11 @@ func _ready():
 	create_gems_at_locations()
 
 func create_gems_at_locations():
-	print(num_of_gems)
-	print(locations)
+	
+	if num_of_gems > locations.size():
+		push_warning("Configured more gems than locations for gems!")
+		num_of_gems = locations.size()
+		
 	for i in num_of_gems:
 		var locationIndex = randi_range(0, locations.size()-1)
 		spawn_gem(locations[locationIndex])

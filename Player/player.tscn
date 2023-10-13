@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyhldg8vbfqib"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_ws0kl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kudt5"]
+size = Vector3(1, 2.9, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ji3y4"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_ws0kl")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418356, 0)
+shape = SubResource("BoxShape3D_kudt5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.48737, 0, 0, 0, 1, 0, 0.417132, 0)
+mesh = SubResource("CapsuleMesh_ji3y4")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12315, -0.128363)
+
+[node name="cam" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0711784, -0.336349)
+far = 242.98
+
+[node name="SpotLight3D" type="SpotLight3D" parent="head/cam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.514044, -0.719963)
+light_energy = 10.555
+spot_range = 9.17145
+spot_angle = 52.3976

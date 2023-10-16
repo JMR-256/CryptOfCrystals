@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $head
 @onready var camera = $head/cam
+@onready var gemsound = $gemsound
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -48,3 +49,7 @@ func _physics_process(delta):
 		velocity.z = 0.0
 
 	move_and_slide()
+
+
+func _on_gemspawner_gem_collected():
+	gemsound.play()

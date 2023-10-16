@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq7oncg3onq25"]
+[gd_scene load_steps=9 format=3 uid="uid://dq7oncg3onq25"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_11e73"]
 [ext_resource type="MeshLibrary" uid="uid://c6r4340rhasy6" path="res://dungeon_mesh_lib.tres" id="1_ublje"]
 [ext_resource type="PackedScene" uid="uid://cyhldg8vbfqib" path="res://Player/player.tscn" id="2_mhous"]
 [ext_resource type="PackedScene" uid="uid://do0qmn1te0e6f" path="res://gem.tscn" id="4_8cwsj"]
 [ext_resource type="Script" path="res://gemspawner.gd" id="5_ttrbm"]
+[ext_resource type="AudioStream" uid="uid://cxw8l4q7se0wh" path="res://audio/collect_gem.wav" id="6_es6ru"]
 
 [sub_resource type="Environment" id="Environment_dxort"]
 background_mode = 1
@@ -34,20 +35,26 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Player" parent="." instance=ExtResource("2_mhous")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99875, 1.1572, 2.992)
 
+[node name="gemsound" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99875, -1.1572, -2.992)
+stream = ExtResource("6_es6ru")
+max_db = 1.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dxort")
 
 [node name="gemspawner" type="Node3D" parent="."]
 script = ExtResource("5_ttrbm")
-num_of_gems = 2
+num_of_gems = 6
 gems = Array[PackedScene]([ExtResource("4_8cwsj")])
-locations = Array[Vector3]([Vector3(-1.188, 1.87, -34.327), Vector3(21.954, 1.87, -63.435), Vector3(12.123, 1.87, -85.236), Vector3(-18.558, 1.87, -88.721), Vector3(18, 1.87, -114.778)])
+locations = Array[Vector3]([Vector3(-1.188, 1.87, -34.327), Vector3(21.954, 1.87, -63.435), Vector3(12.123, 1.87, -85.236), Vector3(-18.558, 1.87, -88.721), Vector3(18, 1.87, -114.778), Vector3(-22.678, 1.87, -114), Vector3(-38.28, 1.87, -60.506), Vector3(-24.95, 1.87, -60.506)])
 
 [node name="work_tool" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9994, 4.11114, -114.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9499, 4.11114, -60.5061)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="work_tool"]
 mesh = SubResource("BoxMesh_b4jbl")
 
 [connection signal="gem_collected" from="gemspawner" to="." method="_on_gemspawner_gem_collected"]
+[connection signal="gem_collected" from="gemspawner" to="Player" method="_on_gemspawner_gem_collected"]

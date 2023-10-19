@@ -1,5 +1,7 @@
 extends Node3D
 
+signal score_updated()
+@onready var winningPoints = $gemspawner.num_of_gems
 var points:int = 0
 
 func _unhandled_input(_event):
@@ -8,5 +10,7 @@ func _unhandled_input(_event):
 
 func _on_gemspawner_gem_collected():
 	points += 1
-	print(points)
-	
+	print("Collected gem. Total gems: ", points)
+	if(points == winningPoints):
+		print("Win condition")
+	score_updated.emit(points)

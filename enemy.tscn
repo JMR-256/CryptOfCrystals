@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bevdswewwdrvv"]
+
+[ext_resource type="Texture2D" uid="uid://hxdrqhofste" path="res://enemies.png" id="1_1dq0s"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_dl24x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikrms"]
+size = Vector3(3, 3, 0.5)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_dl24x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ikrms")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+flip_h = true
+billboard = 2
+texture = ExtResource("1_1dq0s")
+region_enabled = true
+region_rect = Rect2(558.678, 2.65189, 34.6667, 34.2223)

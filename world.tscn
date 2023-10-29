@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq7oncg3onq25"]
+[gd_scene load_steps=10 format=3 uid="uid://dq7oncg3onq25"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_11e73"]
 [ext_resource type="MeshLibrary" uid="uid://c6r4340rhasy6" path="res://dungeon_mesh_lib.tres" id="1_ublje"]
 [ext_resource type="PackedScene" uid="uid://cyhldg8vbfqib" path="res://Player/player.tscn" id="2_mhous"]
 [ext_resource type="PackedScene" uid="uid://do0qmn1te0e6f" path="res://gem.tscn" id="4_8cwsj"]
 [ext_resource type="Script" path="res://gemspawner.gd" id="5_ttrbm"]
+[ext_resource type="PackedScene" uid="uid://bevdswewwdrvv" path="res://enemy.tscn" id="7_h1cv6"]
 [ext_resource type="Script" path="res://gemlabel.gd" id="7_k5vs6"]
 
 [sub_resource type="Environment" id="Environment_dxort"]
@@ -59,6 +60,9 @@ offset_top = 82.0
 offset_right = 447.0
 offset_bottom = 112.0
 script = ExtResource("7_k5vs6")
+
+[node name="Enemy" parent="." instance=ExtResource("7_h1cv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.988, 1.88379, -12.927)
 
 [connection signal="score_updated" from="." to="CanvasLayer/gemlabel" method="_on_world_score_updated"]
 [connection signal="gem_collected" from="gemspawner" to="." method="_on_gemspawner_gem_collected"]
